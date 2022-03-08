@@ -34,12 +34,12 @@ import time
 import re
 import sys
 import traceback
-import Cutiepii_Robot.modules.sql.users_sql as sql
+import Flare_Robot.modules.sql.users_sql as sql
 
 
 from sys import argv
 from typing import Optional
-from Cutiepii_Robot import (
+from Flare_Robot import (
     ALLOW_EXCL,
     CERT_PATH,
     DONATION_LINK,
@@ -63,12 +63,12 @@ from Cutiepii_Robot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from Cutiepii_Robot.events import register
-from Cutiepii_Robot.modules import ALL_MODULES
-from Cutiepii_Robot.modules.helper_funcs.chat_status import is_user_admin
-from Cutiepii_Robot.modules.helper_funcs.alternate import typing_action
-from Cutiepii_Robot.modules.helper_funcs.misc import paginate_modules
-from Cutiepii_Robot.modules.disable import DisableAbleCommandHandler
+from Flare_Robot.events import register
+from Flare_Robot.modules import ALL_MODULES
+from Flare_Robot.modules.helper_funcs.chat_status import is_user_admin
+from Flare_Robot.modules.helper_funcs.alternate import typing_action
+from Flare_Robot.modules.helper_funcs.misc import paginate_modules
+from Flare_Robot.modules.disable import DisableAbleCommandHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
@@ -184,7 +184,7 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("Cutiepii_Robot.modules." + module_name)
+    imported_module = importlib.import_module("Flare_Robot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
