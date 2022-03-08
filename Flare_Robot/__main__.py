@@ -24,7 +24,6 @@ from Flare_Robot import (
     SUPPORT_CHAT,
     BOT_USERNAME,
     EVENT_LOGS,
-    HELP_IMG,
     dispatcher,
     StartTime,
     telethn,
@@ -65,7 +64,7 @@ from telethon import Button, events
 
 
 GROUP_START_IMG = "https://telegra.ph/file/9720f17d6d8fb47a0ae58.mp4"
-
+HELP_IMG = "https://telegra.ph/file/83b00bff39cb132dd3795.jpg"
 
 def get_readable_time(seconds: int) -> str:
     count = 0
