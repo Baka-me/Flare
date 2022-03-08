@@ -100,7 +100,7 @@ PM_START_TEXT = """
 * I am a Kwaii ProBot with so many Advance & Cool Robot With So Many Advance Features.
 ❃.✮:▹»»———⍟———««◃:✮.❃
 ➷ *Uptime:* {}
-➷ `{}` *users, across* `{}` *chats.*
+➷ `{}` *users
 ❃.✮:▹»»———⍟———««◃:✮.❃
 ➹ Try The Help Buttons Below To Know My Abilities. ××
 """
