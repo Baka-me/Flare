@@ -1,31 +1,3 @@
-"""
-MIT License
-
-Copyright (C) 2017-2019, Paul Larsen
-Copyright (C) 2021 Awesome-RJ
-Copyright (c) 2021, Yūki • Black Knights Union, <https://github.com/Awesome-RJ/CutiepiiRobot>
-
-This file is part of @Cutiepii_Robot (Telegram Bot)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
-
 import html
 import os
 import json
@@ -123,14 +95,14 @@ HELP_MSG = "Click the button below to get help manu in your pm."
 START_MSG = "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>"
     
 PM_START_TEXT = """
-────「 [{}](https://telegra.ph/file/87fc99fdb207271b9439a.jpg) 」────
-*Hola! {},*
-*I am an Anime themed advance group management bot with a lot of Sexy Features.*
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Uptime:* `{}`
-• `{}` *users, across* `{}` *chats.*
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-➛ Try The Help Buttons Below To Know My Abilities ××
+────「 {} 」────
+*Heyaa! {},*
+* I am a Kwaii ProBot with so many Advance & Cool Robot With So Many Advance Features.
+⋇⋆✦⋆⋇————————————————⋇⋆✦⋆⋇
+➷ *Uptime:* {}
+➷ `{}` *users, across* `{}` *chats.*
+⋇⋆✦⋆⋇————————————————⋇⋆✦⋆⋇
+➹ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/87fc99fdb207271b9439a.jpg) ××
 """
 
 GROUP_START_TEXT = """
@@ -141,7 +113,7 @@ Haven't slept since: {}
 buttons = [
     [
                         InlineKeyboardButton(
-                            text=f"Add {BOT_NAME} To Your Group",
+                            text=f"Add kawaii To Your Group",
                             url=f"t.me/{BOT_USERNAME}?startgroup=true")
                     ],
                    [
