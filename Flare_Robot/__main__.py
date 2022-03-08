@@ -97,10 +97,9 @@ START_MSG = "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>"
 PM_START_TEXT = """
 ────「 [{}](https://telegra.ph/file/87fc99fdb207271b9439a.jpg) 」────
 *Hola! {},*
-* I am a Kwaii ProBot with so many Advance & Cool Robot With So Many Advance Features.
+* I am a Kawaii Cute Robot With So Many Advance Features.
 ❃.✮:▹»»———⍟———««◃:✮.❃
-➷ *Uptime:* {}
-➷ `{}` *users
+➷ *Uptime:* {} || `{}` *users
 ❃.✮:▹»»———⍟———««◃:✮.❃
 ➹ Try The Help Buttons Below To Know My Abilities. ××
 """
