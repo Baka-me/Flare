@@ -1,3 +1,31 @@
+"""
+MIT License
+
+Copyright (C) 2017-2019, Paul Larsen
+Copyright (C) 2021 Awesome-RJ
+Copyright (c) 2021, Yūki • Black Knights Union, <https://github.com/Awesome-RJ/CutiepiiRobot>
+
+This file is part of @Cutiepii_Robot (Telegram Bot)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
 import html
 import os
 import json
@@ -6,12 +34,12 @@ import time
 import re
 import sys
 import traceback
-import Flare_Robot.modules.sql.users_sql as sql
+import Cutiepii_Robot.modules.sql.users_sql as sql
 
 
 from sys import argv
 from typing import Optional
-from Flare_Robot import (
+from Cutiepii_Robot import (
     ALLOW_EXCL,
     CERT_PATH,
     DONATION_LINK,
@@ -23,6 +51,7 @@ from Flare_Robot import (
     WEBHOOK,
     SUPPORT_CHAT,
     BOT_USERNAME,
+    BOT_NAME,
     EVENT_LOGS,
     dispatcher,
     StartTime,
@@ -34,12 +63,12 @@ from Flare_Robot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from Flare_Robot.events import register
-from Flare_Robot.modules import ALL_MODULES
-from Flare_Robot.modules.helper_funcs.chat_status import is_user_admin
-from Flare_Robot.modules.helper_funcs.alternate import typing_action
-from Flare_Robot.modules.helper_funcs.misc import paginate_modules
-from Flare_Robot.modules.disable import DisableAbleCommandHandler
+from Cutiepii_Robot.events import register
+from Cutiepii_Robot.modules import ALL_MODULES
+from Cutiepii_Robot.modules.helper_funcs.chat_status import is_user_admin
+from Cutiepii_Robot.modules.helper_funcs.alternate import typing_action
+from Cutiepii_Robot.modules.helper_funcs.misc import paginate_modules
+from Cutiepii_Robot.modules.disable import DisableAbleCommandHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
@@ -62,10 +91,10 @@ from telegram.utils.helpers import escape_markdown
 from pyrogram import Client, idle
 from telethon import Button, events
 
-
-GROUP_START_IMG = "https://telegra.ph/file/9720f17d6d8fb47a0ae58.mp4"
 HELP_IMG = "https://telegra.ph/file/83b00bff39cb132dd3795.jpg"
 
+GROUP_START_IMG = "https://telegra.ph/file/9720f17d6d8fb47a0ae58.mp4"
+     
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
@@ -94,14 +123,14 @@ HELP_MSG = "Click the button below to get help manu in your pm."
 START_MSG = "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>"
     
 PM_START_TEXT = """
-────「 {} 」────
-*Heyaa! {},*
-* I am a Kwaii ProBot with so many Advance & Cool Robot With So Many Advance Features.
-⋇⋆✦⋆⋇————————————————⋇⋆✦⋆⋇
-➷ *Uptime:* {}
-➷ `{}` *users, across* `{}` *chats.*
-⋇⋆✦⋆⋇————————————————⋇⋆✦⋆⋇
-➹ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/87fc99fdb207271b9439a.jpg) ××
+────「 [{}](https://telegra.ph/file/87fc99fdb207271b9439a.jpg) 」────
+*Hola! {},*
+*I am an Anime themed advance group management bot with a lot of Sexy Features.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+• *Uptime:* `{}`
+• `{}` *users, across* `{}` *chats.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+➛ Try The Help Buttons Below To Know My Abilities ××
 """
 
 GROUP_START_TEXT = """
@@ -112,20 +141,20 @@ Haven't slept since: {}
 buttons = [
     [
                         InlineKeyboardButton(
-                            text=f"Add Kawaii To Your Group💝",
-                            url=f"t.me/Flare_Robot?startgroup=true")
+                            text=f"Add {BOT_NAME} To Your Group",
+                            url=f"t.me/{BOT_USERNAME}?startgroup=true")
                     ],
                    [
                        InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
-                       InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/O"),
+                       InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/kawaii_support"),
                        InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
                      ],
                     [                  
                        InlineKeyboardButton(
-                             text="🚑Kawaii Support",
+                             text="🚑 Support",
                              url=f"https://t.me/{SUPPORT_CHAT}"),
                        InlineKeyboardButton(
-                             text="📢Kawaii Updates",
+                             text="📢 Updates",
                              url="https://t.me/Kawaii_Updates")
                      ], 
     ]
@@ -155,7 +184,7 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("Flare_Robot.modules." + module_name)
+    imported_module = importlib.import_module("Cutiepii_Robot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -256,7 +285,7 @@ def start(update: Update, context: CallbackContext):
             )
     else:
         update.effective_message.reply_animation(
-            GROUP_START_IMG, caption= "Hoi-Hoi! I am The Kawaaii💖💝!\n<b>Haven't slept since:</b> <code>{}</code>".format(
+            GROUP_START_IMG, caption= "<b>Hoi-Hoi!! It's me Kawaii!!\nHaven't sleep since</b>: <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
@@ -265,18 +294,17 @@ def start(update: Update, context: CallbackContext):
                     [
                         InlineKeyboardButton(
                             text="🚑 Support",
-                            url=f"https://telegram.dog/Freia_Support",
+                            url=f"https://telegram.dog/{SUPPORT_CHAT}",
                         ),
                         InlineKeyboardButton(
                             text="📢 Updates",
-                            url="https://t.me/Kawaii_Updates",
+                            url="https://telegram.dog/Kawaii_Updates",
                         ),
                     ]
                 ]
             ),
         )
 
-        
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
     # Log the error before we do anything else, so we can see it even if something breaks.
@@ -398,7 +426,7 @@ def help_button(update, context):
 def cutiepii_callback_data(update, context):
     query = update.callback_query
     uptime = get_readable_time((time.time() - StartTime))
-    if query.data == "flare_":
+    if query.data == "cutiepii_":
         query.message.edit_text(
             text="""CallBackQueriesData Here""",
             parse_mode=ParseMode.MARKDOWN,
@@ -679,20 +707,7 @@ def migrate_chats(update: Update, context: CallbackContext):
     LOGGER.info("Successfully migrated!")
     raise DispatcherHandlerStop
     
-
 def main():
-
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-        try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "[Hehe, now Kawaii is fully charged by beaui!!](https://telegra.ph/file/72792bfea6576f0ea1873.mp4)", parse_mode=ParseMode.MARKDOWN)
-        except Unauthorized:
-            LOGGER.warning(
-                "Bot isnt able to send message to support_chat, go and check!",
-            )
-        except BadRequest as e:
-            LOGGER.warning(e.message)
-
-
     test_handler = DisableAbleCommandHandler("test", test, run_async=True)
     start_handler = DisableAbleCommandHandler("start", start, run_async=True)
 
@@ -728,7 +743,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info(f"Kawaii is started, Using long pole")
+        LOGGER.info(f" Kawaii is started, Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
 
     if len(argv) not in (1, 3, 4):
@@ -747,6 +762,6 @@ except BaseException:
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    pbot.start()
+    pgram.start()
     main()
     idle()
