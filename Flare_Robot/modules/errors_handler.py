@@ -9,7 +9,7 @@ import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT 
+from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT
 
 pretty_errors.mono()
 

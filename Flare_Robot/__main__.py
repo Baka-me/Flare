@@ -96,13 +96,13 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
-        InlineKeyboardButton(
-            text="❔ Chit Chat", url="1"
-        ),
+        InlineKeyboardButton(text="❔ Chit Chat", url="1"),
         InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
     ],
     [
-        InlineKeyboardButton(text="🚑Kawaii Support", url=f"https://t.me/{SUPPORT_CHAT}"),
+        InlineKeyboardButton(
+            text="🚑Kawaii Support", url=f"https://t.me/{SUPPORT_CHAT}"
+        ),
         InlineKeyboardButton(text="📡Kawaii Updates", url="https://t.me/Kawaii_Updates"),
     ],
 ]
@@ -670,7 +670,12 @@ def main():
 
     else:
         LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
+        updater.start_polling(
+            timeout=15,
+            read_latency=4,
+            drop_pending_updates=True,
+            allowed_updates=Update.ALL_TYPES,
+        )
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()

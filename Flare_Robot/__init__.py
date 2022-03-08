@@ -74,11 +74,6 @@ if ENV:
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
 
-
-    
-    
-    
-    
     INFOPIC = bool(os.environ.get("INFOPIC", False))
     EVENT_LOGS = os.environ.get("EVENT_LOGS", None)
     ERROR_LOGS = os.environ.get("ERROR_LOGS", None)
@@ -111,13 +106,15 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    BOT_ID = os.environ.get ("BOT_ID", None)
+    BOT_ID = os.environ.get("BOT_ID", None)
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
-    FLARE_PHOTO = os.environ.get("FLARE_PHOTO", "https://telegra.ph/file/2a171330f0ad1fc02465c.jpg")
+    FLARE_PHOTO = os.environ.get(
+        "FLARE_PHOTO", "https://telegra.ph/file/2a171330f0ad1fc02465c.jpg"
+    )
     BOT_NAME = os.environ.get("BOT_NAME", None)
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
-    BOT_API_URL = os.environ.get('BOT_API_URL', "https://api.telegram.org/bot")
+    BOT_API_URL = os.environ.get("BOT_API_URL", "https://api.telegram.org/bot")
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
@@ -202,12 +199,11 @@ else:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
-        
+
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEMONS.add(1470075895)
-
 
 
 if not SPAMWATCH_API:
@@ -234,7 +230,7 @@ finally:
 
 telegraph = Telegraph()
 print("Telegraph Account Creating")
-telegraph.create_account(short_name='Flare')        
+telegraph.create_account(short_name="Flare")
 print("TELETHON CLIENT STARTING")
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 updater = tg.Updater(
@@ -266,6 +262,7 @@ ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 timeout = httpx.Timeout(40)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
+
 async def get_entity(client, entity):
     entity_client = client
     if not isinstance(entity, Chat):
@@ -291,6 +288,7 @@ async def get_entity(client, entity):
                 entity = await pgram.get_chat(entity)
                 entity_client = pgram
     return entity, entity_client
+
 
 apps = [pgram]
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
