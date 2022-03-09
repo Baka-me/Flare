@@ -684,7 +684,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}",
-                "[Hehe, now Kawaii got fully charged of Beauty!!](https://telegra.ph/file/72792bfea6576f0ea1873.mp4)",
+                "Hehe, now kawaii is fully charged with Beauty!![Now, It's the time to Shine✨!!](https://telegra.ph/file/72792bfea6576f0ea1873.mp4)",
                 parse_mode=ParseMode.MARKDOWN,
             )
         except Unauthorized:
